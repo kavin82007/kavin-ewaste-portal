@@ -53,7 +53,7 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig-file', variable: 'KUBECONFIG')]) {
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                     bat 'kubectl apply -f deployment.yaml'
                     bat "kubectl set image deployment/ewaste-portal ewaste-portal=%IMAGE_NAME%:%IMAGE_TAG%"
                     script {
